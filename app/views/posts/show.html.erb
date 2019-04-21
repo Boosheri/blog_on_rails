@@ -14,14 +14,16 @@
 
 <div>
     <small>
-        <%= link_to "Edit", edit_post_path(@post) %>
-    </small> |
+        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>
+
+    </small> 
+    
     <small>
-      <%= link_to(
-        "Delete", post_path(@post),
+        <%= link_to(
+        "Delete", post_path(@post), class: "btn btn-outline-primary" ,
         method: :delete,
-        data: { confirm: "Are you sure?"}
-        )%>
+        data: { confirm: "Are you sure?"}) %>
+
     </small>
 </div>
 
@@ -38,20 +40,23 @@
     <div class="form-group">
       <%= f.text_area(
       :body, cols: 50, rows: 5,
-      placeholder: "What's on your mind?'",
+      placeholder: "What's on your mind?",
       class: "form-control"
       ) %>
     </div>
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-outline-primary" %>
   <% end %>
 
   
-<div>
-    <ul class="comment-list">
+    <br>
+  
       <% @comments.each do |comment| %>
-        <li>
+      
           <p>
           <%= comment.body %> <br />
+          <small>
+            Commented <%= time_ago_in_words(comment.created_at) %> ago
+          </small>
             <small>
               <%= link_to(
               "Delete",
@@ -61,11 +66,8 @@
               }
               ) %>
             </small>
-          <small>
-            Commented <%= time_ago_in_words(comment.created_at) %> ago
-          </small>
         </p>
-        </li>
+
       <% end %>
-    </ul>
+
 </div>

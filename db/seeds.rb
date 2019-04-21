@@ -9,7 +9,7 @@
 Comment.delete_all
 Post.delete_all
 
-500.times do
+100.times do
     created_at = Faker::Date.backward(50 * 5)
     p = Post.create(
     title: Faker::Quote.singular_siegler,

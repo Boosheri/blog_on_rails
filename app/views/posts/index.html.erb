@@ -1,17 +1,15 @@
-<h1>Posts</h1>
 
-
-<ul class="post-list">
+<div class="cards">
   <% @posts.each do |post| %>
-    <li>
-      <%= link_to(post.title, post_path(post)) %> <br />
-      <small>
-        Posted <%= time_ago_in_words(post.created_at)  %> ago
-      </small>
-      |
-      <small>
-        Seen <%= pluralize(post.view_count, "time") %>
-      </small>
-    </li>
+    <div class="card">
+    <div class="card-body">
+        
+        <%= link_to(post.title, post_path(post)) %> <br />
+        <small>
+            Posted <%= time_ago_in_words(post.created_at)  %> ago
+        </small>
+    
+    </div>
+    </div>
   <% end %>
-</ul>
+</div>

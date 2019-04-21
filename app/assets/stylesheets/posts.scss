@@ -1,3 +1,29 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.card {
+    margin: 1em;
+}
+
+
+
+@media (min-width: 600px){
+    .cards{
+        display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    }
+  
+}
+
+@media (min-width: 950px){
+    .cards{
+        display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    }
+  
+}

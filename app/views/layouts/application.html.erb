@@ -7,9 +7,33 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
   </head>
 
   <body>
+
+  <nav class="navbar bg-light">
+    <span class="navbar-text">
+       <button type="button" class="btn btn-link">
+    <%= link_to("Blog On Rails", root_path) %>
+    </button>
+    </span>
+
+    <span class="navbar-text">
+    <button type="button" class="btn btn-link">
+    <%= link_to("Home", root_path) %>
+    </button>
+    
+    <button type="button" class="btn btn-link">
+    <%= link_to("New Post", new_post_path) %>
+    </button>
+   
+
+    </span>
+  </nav>
+  <main>
     <%= yield %>
+  </main>
   </body>
+  
 </html>
