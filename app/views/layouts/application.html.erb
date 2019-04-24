@@ -27,7 +27,32 @@
     <button type="button" class="btn btn-link">
     <%= link_to("New Post", new_post_path) %>
     </button>
-   
+
+    <% if user_signed_in? %>
+    <p>
+      Hello <%= current_user.first_name %> 
+    </p>
+
+      <button type="button" class="btn btn-link">
+        <%= link_to("Logout", session_path) %>
+      </button>
+
+    <% else %>
+      <button type="button" class="btn btn-link">
+      <%= link_to("Login", new_session_path) %>
+      </button>
+      
+      <button type="button" class="btn btn-link">
+      <%= link_to("Sign Up", new_user_path) %>
+      </button>
+    <% end %>
+    
+    <div class="container">
+      <% flash.each do |type, message| %>
+        <div class="flash flash-<%= type %>">
+          <%= message %>
+        </div>
+      <% end %>
 
     </span>
   </nav>
