@@ -4,16 +4,14 @@
 
 <div>
   <small>
-    Posted <%= time_ago_in_words(@post.created_at)  %> ago
+    Posted <%= time_ago_in_words(@post.created_at)  %> ago by <%=@post.user.name%>
   </small>
-  |
-  <small>
-    Last edited <%= time_ago_in_words(@post.updated_at) %> ago
-  </small>
+
 </div>
 
 <div>
     <small>
+      <% if can?(:crud, @post) %>
         <%= link_to "Edit", edit_post_path(@post), class: "btn btn-outline-primary" %>
 
     </small> 
@@ -23,7 +21,7 @@
         "Delete", post_path(@post), class: "btn btn-outline-primary" ,
         method: :delete,
         data: { confirm: "Are you sure?"}) %>
-
+      <%end%>
     </small>
 </div>
 
@@ -55,9 +53,10 @@
           <p>
           <%= comment.body %> <br />
           <small>
-            Commented <%= time_ago_in_words(comment.created_at) %> ago
+            Commented <%= time_ago_in_words(comment.created_at) %> ago by <%=comment.user.name%>
           </small>
             <small>
+              <% if can?(:crud, comment) %>
               <%= link_to(
               "Delete",
               post_comment_path(@post, comment),
@@ -65,6 +64,7 @@
                 confirm: "Are you sure?"
               }
               ) %>
+              <%end%>
             </small>
         </p>
 

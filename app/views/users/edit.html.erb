@@ -1,0 +1,21 @@
+<h1> Edit </h1>
+
+<%= form_with model: @user, local: true do |f| %>
+    <% if @user.errors.any? %>
+<p>
+    <%= @user.errors.full_messages.join (", ") %>
+</p>
+    <% end %>
+ <div class="form-group">
+<%= f.label :name%>
+<%= f.text_field :name%>
+</div>
+ <div class="form-group">
+<%= f.label :email%>
+<%= f.email_field :email%>
+</div>
+  <%= f.submit "Update", class: "btn btn-outline-primary" %>
+<% end %>
+
+<%= link_to("Change Password", edit_password_users_path(current_user), class:"btn btn-link") %>
+<%= link_to("Change Password2", edit_password_users_path, class:"btn btn-link") %>

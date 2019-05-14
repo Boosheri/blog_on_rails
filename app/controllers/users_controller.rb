@@ -1,0 +1,59 @@
+class UsersController < ApplicationController
+  before_action :find_user, only: [:edit, :update, :editPassword, :updatePassword]
+  before_action :authenticate_user!, only: [:edit, :editPassword]
+  # before_action :authorize, only: [:edit]
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new user_params
+    if @user.save
+        session[:user_id] = @user.id
+        redirect_to root_path
+    else
+       render :new
+    end
+  end
+
+  def edit
+  end
+  
+  def update
+    if @user.update user_params
+      redirect_to root_path
+      flash[:notice] = "User updated!"
+    else
+      render :edit
+    end
+  end
+
+  def edit_password
+    
+  end
+  
+  def update_password
+    if @user.update user_params
+      redirect_to root_path
+      flash[:notice] = "Password updated!"
+    else
+      render :editPassword
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
+  def authorize
+    redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @user)
+  end
+
+end
